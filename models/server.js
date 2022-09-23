@@ -22,7 +22,7 @@ class Server {
     });
     
     this.app.post('/api', (req, res) => {
-      res.json({ ok: true, message: "First POST API" });
+      res.status(201).json({ ok: true, message: "First POST API" });
     });
     
     this.app.put('/api', (req, res) => {
