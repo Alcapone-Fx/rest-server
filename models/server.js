@@ -17,12 +17,20 @@ class Server {
   }
 
   routes() {
-    this.app.get('/', (req, res) => {
-      res.json('Hola Mundo!');
+    this.app.get('/api', (req, res) => {
+      res.json({ ok: true, message: "First GET API" });
     });
     
-    this.app.get('/hello', (req, res) => {
-      res.send('Hello World!');
+    this.app.post('/api', (req, res) => {
+      res.json({ ok: true, message: "First POST API" });
+    });
+    
+    this.app.put('/api', (req, res) => {
+      res.json({ ok: true, message: "First PUT API" });
+    });
+    
+    this.app.delete('/api', (req, res) => {
+      res.json({ ok: true, message: "First DELETE API" });
     });
   }
 
