@@ -26,6 +26,9 @@ class Server {
   middlewares() {
     this.app.use(cors());
 
+    // middleware needed to read and parse payload requests
+    this.app.use(express.json());
+
     this.app.use(express.static("public"));
   }
 
