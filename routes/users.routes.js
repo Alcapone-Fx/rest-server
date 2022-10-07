@@ -1,4 +1,4 @@
-const { Router } = require("express"); // Class to create modular, mountable route handlers
+const { Router } = require('express'); // Class to create modular, mountable route handlers
 const router = Router();
 
 const {
@@ -6,14 +6,14 @@ const {
   createUsers,
   updateUsers,
   deleteUsers,
-} = require("../controllers/users.controllers");
+} = require('../controllers/users.controllers');
 
-router.get("/", getUsers);
+router.get('/', getUsers);
 
-router.post("/", createUsers);
+router.post('/', createUsers);
 
-router.put("/", updateUsers);
+router.put('/:userId', updateUsers);
 
-router.delete("/", deleteUsers);
+router.delete('/', deleteUsers);
 
 module.exports = router;
