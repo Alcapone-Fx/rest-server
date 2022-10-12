@@ -3,6 +3,12 @@ const { BadRequest } = require('../utils/errors.utils');
 
 const HTTP_STATUSES = { CREATED: 201, BAD_REQUEST: 400 };
 
+const getUser = (req = request, res = response) => {
+  const { userId } = req.params;
+
+  res.json({ ok: true, message: 'GET specific user', userId });
+};
+
 const getUsers = (req = request, res = response) => {
   const { name, gender = 'NA' } = req.query;
 
@@ -38,6 +44,7 @@ const deleteUsers =
 
 module.exports = {
   getUsers,
+  getUser,
   createUsers,
   updateUsers,
   deleteUsers,

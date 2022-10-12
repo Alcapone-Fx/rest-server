@@ -5,12 +5,15 @@ const errorHandlers = require('../middlewares/handleErrors.middleware');
 
 const {
   getUsers,
+  getUser,
   createUsers,
   updateUsers,
   deleteUsers,
 } = require('../controllers/users.controllers');
 
 router.get('/', getUsers);
+
+router.get('/:userId', getUser);
 
 router.post('/', createUsers);
 
