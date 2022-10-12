@@ -1,4 +1,5 @@
 const { response, request } = require('express');
+const { BadRequest } = require('../utils/errors.utils');
 
 const HTTP_STATUSES = { CREATED: 201, BAD_REQUEST: 400 };
 
@@ -15,10 +16,18 @@ const createUsers = (req, res = response) => {
     .json({ ok: true, message: 'First POST API', name, age });
 };
 
-const updateUsers = (req = request, res = response) => {
-  const { userId } = req.params;
-
-  res.json({ ok: true, message: 'First PUT API', id: userId });
+const updateUsers = (req = request, res = response, next) => {
+  try {
+    const { userId } = req.params;
+    if (userId === '0') {
+      throw new BadRequest('Missing required field: userId');
+    }
+    
+    res.json({ ok: true, message: 'First PUT API', id: userId });
+  } catch (err) {
+    // passing to the error handler middleware
+    next(err);
+  }
 };
 
 const deleteUsers =
