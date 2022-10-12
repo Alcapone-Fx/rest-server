@@ -16,19 +16,26 @@ class Server {
     this.#paths = {
       usuarios: `${this.#ENDPOINT_PREFIX}/users`,
     };
-
+        
     // Middlewares: functions tha are triggered when starting the server
     this.middlewares();
 
     this.routes();
   }
-
+  
   middlewares() {
-    this.app.use(cors());
+    // You should only configure middleware at the application level if absolutely necessary
+    // i.e. it really must be run for every single route in your application.
+    // Every middleware function, no matter how small, takes some time to execute.
+    // The more middleware functions that need to be run for a route, the slower requests to that route will be.
+    // This really adds up as your application grows and is configured with lots of middleware.
+    // Try to scope middleware to the route or router levels when you can.
 
+    this.app.use(cors());
+    
     // middleware needed to read and parse payload requests
     this.app.use(express.json());
-
+    
     this.app.use(express.static('public'));
   }
 
